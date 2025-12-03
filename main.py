@@ -1,66 +1,75 @@
-def mbti_career_recommendation(mbti_type):
-    # MBTI 유형에 따른 진로 추천
-    career_paths = {
-        'INFJ': {
-            'career1': '심리상담사',
-            'career2': '작가',
-            'description1': '사람들의 마음을 이해하고 돕는 것을 좋아하는 INFJ에게 완벽한 직업! 💖 깊은 통찰력을 바탕으로 상담을 통해 타인의 삶을 변화시킬 수 있어요.',
-            'description2': '자신의 생각과 감정을 글로 표현하고 싶은 INFJ는 작가로서의 가능성을 타고 나죠. ✍️ 의미 있는 이야기를 통해 다른 사람들에게 영감을 줄 수 있어요.',
-            'major1': '심리학, 상담학',
-            'major2': '영문학, 창작 글쓰기',
-            'personality1': '타인의 감정을 잘 이해하고, 도와주고 싶은 마음이 큰 사람.',
-            'personality2': '창의적이고, 내면의 생각을 글로 표현하는 것을 좋아하는 사람.',
-        },
-        'INTJ': {
-            'career1': '연구원',
-            'career2': '기업 전략가',
-            'description1': '논리적이고 체계적인 사고를 통해 깊이 있는 연구를 할 수 있는 INTJ에게 딱 맞는 직업! 🔬 새로운 아이디어를 찾아내고 문제를 해결하는 것에 능숙해요.',
-            'description2': '기업이나 조직에서 전략을 구상하고 미래를 계획하는 일이 매력적인 INTJ! 📊 분석적이고 창의적인 전략을 통해 비즈니스의 성공을 이끌어갈 수 있어요.',
-            'major1': '물리학, 공학, 생명과학',
-            'major2': '경영학, 경제학',
-            'personality1': '논리적이고 분석적인 사고를 통해 문제를 해결하는 것을 좋아하는 사람.',
-            'personality2': '미래 지향적이고 창의적인 방법으로 조직을 이끄는 데 관심 있는 사람.',
-        },
-        'ENFP': {
-            'career1': '마케팅 전문가',
-            'career2': '행사 기획자',
-            'description1': '열정적이고 창의적인 ENFP는 마케팅 전문가로서 새로운 아이디어를 끊임없이 발굴하며, 사람들을 끌어들이는 매력을 가지고 있어요! 📣',
-            'description2': '다양한 사람들과 소통하고 창의적인 이벤트를 기획하는 것에 능한 ENFP! 🎉 이벤트 기획자로서 대규모 행사를 성공적으로 이끌 수 있어요.',
-            'major1': '마케팅, 커뮤니케이션',
-            'major2': '이벤트 기획, 디자인',
-            'personality1': '새로운 아이디어를 발굴하고 사람들을 설득하는 것을 좋아하는 사람.',
-            'personality2': '다양한 사람들과 소통하며 창의적인 기획을 하는 것을 즐기는 사람.',
-        },
-        'ISTJ': {
-            'career1': '회계사',
-            'career2': '법률 전문가',
-            'description1': '정확하고 체계적인 일을 좋아하는 ISTJ는 세밀한 주의력이 필요한 회계 업무에 적합해요! 📚 숫자와 데이터를 다루는 데 강한 사람.',
-            'description2': '법적 절차를 분석하고 규정을 따르는 일을 좋아하는 ISTJ는 법률 전문가로서 뛰어난 능력을 발휘할 수 있어요! ⚖️ 공정함과 규칙을 중요시하는 사람.',
-            'major1': '회계학, 경영학',
-            'major2': '법학, 정치학',
-            'personality1': '세부적인 사항까지 꼼꼼히 체크하고, 체계적인 일을 선호하는 사람.',
-            'personality2': '법적인 규정과 절차에 충실한 일을 좋아하는 사람.',
-        }
-    }
-    
-    # 해당 MBTI 유형에 맞는 진로 추천 및 설명 출력
-    if mbti_type in career_paths:
-        careers = career_paths[mbti_type]
-        return f"""
-        MBTI 유형: {mbti_type}
-        
-        🎯 **추천 진로 1**: {careers['career1']}
-        설명: {careers['description1']}
-        적합한 학과: {careers['major1']}
-        성격: {careers['personality1']}
-        
-        🎯 **추천 진로 2**: {careers['career2']}
-        설명: {careers['description2']}
-        적합한 학과: {careers['major2']}
-        성격: {careers['personality2']}
-        """
-    else:
-        return "해당 MBTI 유형에 대한 정보가 없습니다."
+import streamlit as st
 
-# 예시로 INFJ 유형에 대해 진로 추천을 받아봅니다.
-print(mbti_career_recommendation('INFJ'))
+st.set_page_config(page_title="MBTI 진로 추천기", page_icon="🎓")
+
+st.title("🎓 MBTI 기반 진로 추천기")
+st.write("안녕! 너의 MBTI를 선택하면 딱 맞는 진로 2개를 추천해줄게 😊✨")
+
+# MBTI 데이터
+career_paths = {
+    'INFJ': {
+        'career1': '심리상담사 🧠💗',
+        'career2': '작가 ✍️✨',
+        'description1': '사람들의 마음을 이해하고 공감하는 능력이 뛰어난 INFJ! 상담사로서 누군가에게 진짜 힘이 되어줄 수 있어 😊',
+        'description2': '깊은 생각과 감성을 글로 표현하는 능력 최고! INFJ는 의미 있는 스토리 만드는 데 천재야 ✨',
+        'major1': '심리학, 상담학',
+        'major2': '국문학, 문예창작, 영문학',
+        'personality1': '배려심 깊고 감정에 민감하며 타인을 돕고 싶은 마음이 큰 사람 💗',
+        'personality2': '감수성이 풍부하고, 글이나 창작 활동을 좋아하는 사람 ✍️'
+    },
+    'INTJ': {
+        'career1': '연구원 🔬🧠',
+        'career2': '전략 기획가 📊🧩',
+        'description1': '논리와 분석력 끝판왕 INTJ! 연구로 새로운 지식을 만드는 타입이야.',
+        'description2': '계획 세우고 전략 짜는 거 좋아하지? 회사의 방향을 잡는 멋진 전략가가 딱이야!',
+        'major1': '공학, 자연과학, 통계학',
+        'major2': '경영학, 경제학',
+        'personality1': '논리적이고 혼자 깊이 탐구하는 걸 좋아하는 사람 🔍',
+        'personality2': '냉철하게 판단하고 효율을 중요하게 여기는 사람 📈'
+    },
+    'ENFP': {
+        'career1': '마케팅 전문가 📣🔥',
+        'career2': '행사 기획자 🎉✨',
+        'description1': '아이디어 뿜뿜! 사람들과 잘 어울리는 ENFP의 끼를 마음껏 펼칠 수 있어!',
+        'description2': '활발하고 창의적인 너라면 행사 기획에서 분위기 메이커 확정!',
+        'major1': '경영학, 광고홍보학',
+        'major2': '이벤트 기획, 문화콘텐츠학',
+        'personality1': '새로운 걸 시도해보고, 사람들과 소통하는 걸 즐기는 타입 🙌',
+        'personality2': '창의적이고 팀 분위기를 이끄는 걸 좋아하는 사람 😆'
+    },
+    'ISTJ': {
+        'career1': '회계사 📘📊',
+        'career2': '법률 전문가 ⚖️📚',
+        'description1': '꼼꼼함의 대명사 ISTJ! 숫자와 자료를 정확하게 다룰 수 있어.',
+        'description2': '규칙•원칙 중요하게 생각하는 성격이라 법조계와 찰떡!',
+        'major1': '회계학, 세무학, 경영학',
+        'major2': '법학, 행정학',
+        'personality1': '정리정돈 잘하고 책임감 강한 사람 👍',
+        'personality2': '원칙적이고 공정함을 중요하게 여기는 사람 ⚖️'
+    }
+}
+
+# MBTI 선택
+mbti_list = list(career_paths.keys())
+user_mbti = st.selectbox("너의 MBTI를 골라줘! 😎", mbti_list)
+
+st.divider()
+
+if user_mbti:
+    data = career_paths[user_mbti]
+
+    st.subheader(f"🌟 {user_mbti} 유형 추천 진로")
+    
+    # 진로 1
+    st.write(f"### 🎯 추천 진로 1: **{data['career1']}**")
+    st.write(f"- {data['description1']}")
+    st.write(f"- **관련 학과:** {data['major1']}")
+    st.write(f"- **잘 맞는 성격:** {data['personality1']}")
+
+    st.write("---")
+
+    # 진로 2
+    st.write(f"### 🎯 추천 진로 2: **{data['career2']}**")
+    st.write(f"- {data['description2']}")
+    st.write(f"- **관련 학과:** {data['major2']}")
+    st.write(f"- **잘 맞는 성격:** {data['personality2']}")
